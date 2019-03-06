@@ -4,7 +4,7 @@ sys.path.append('.')
 import argparse  # noqa
 from stefuna import Server, configure_logger  # noqa
 from pydoc import locate  # noqa
-from multiprocessing import cpu_count  # noqa
+from multiprocessing import cpu_count, set_start_method  # noqa
 import logging  # noqa
 
 
@@ -37,6 +37,7 @@ config = {
 
 
 def main():
+    set_start_method('spawn')
     parser = argparse.ArgumentParser(description='Run a Step Function Activity server.')
     parser.add_argument('--config', dest='config', action='store', required=False,
                         help='Module or dict of config to override defaults')
